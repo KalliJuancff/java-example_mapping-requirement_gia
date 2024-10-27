@@ -3,8 +3,7 @@
 
 ## But... what does the above mean?
 ### This is a almost academic example of an unclear requirement that business team needs to clarify.
-#### But since we don't have any in our pocket, let's imagine.
-#### And there are two possible interpretations:
+#### But since we don't have any in our pocket, let's imagine. And there are two possible interpretations:
 ####       1/ (work phone number and address) or mobile phone number?
 ####       2/ work phone number and (address or mobile phone number)?
 
