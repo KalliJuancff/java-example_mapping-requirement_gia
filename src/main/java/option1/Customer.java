@@ -11,15 +11,15 @@ public class Customer {
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public String getWorkPhoneNumber() {
-        return workPhoneNumber;
+    public boolean hasWorkPhoneNumber() {
+        return !workPhoneNumber.isEmpty();
     }
 
-    public String getAddress() {
-        return address;
+    public boolean hasAddress() {
+        return !address.isEmpty();
     }
 
-    public String getMobilePhoneNumber() {
-        return mobilePhoneNumber;
+    public boolean hasMobilePhoneNumber() {
+        return !mobilePhoneNumber.isEmpty();
     }
 }

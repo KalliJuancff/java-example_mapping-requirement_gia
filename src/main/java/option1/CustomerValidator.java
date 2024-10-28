@@ -2,13 +2,15 @@ package option1;
 
 public class CustomerValidator {
     public boolean validate(Customer customer) {
-        if (customer.getAddress().isEmpty() && customer.getMobilePhoneNumber().isEmpty()) {
+        if (!customer.hasAddress() && !customer.hasMobilePhoneNumber()) {
             return false;
         }
-        if (customer.getMobilePhoneNumber().isEmpty() && customer.getWorkPhoneNumber().isEmpty()) {
+
+        if (!customer.hasMobilePhoneNumber() && !customer.hasWorkPhoneNumber()) {
             return false;
         }
 
         return true;
     }
+
 }
