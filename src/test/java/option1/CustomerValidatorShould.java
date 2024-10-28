@@ -40,8 +40,8 @@ public class CustomerValidatorShould {
 // [x] [x] [x] -> can be registered
 // [x] [x] [ ] -> can be registered
 // [x] [ ] [x] -> can be registered
-// [x] [ ] [ ] -> cannot be registered
 // [ ] [x] [x] -> can be registered
-// [ ] [x] [ ] -> cannot be registered
 // [ ] [ ] [x] -> can be registered
+// [x] [ ] [ ] -> cannot be registered
+// [ ] [x] [ ] -> cannot be registered
 // [ ] [ ] [ ] -> cannot be registered
