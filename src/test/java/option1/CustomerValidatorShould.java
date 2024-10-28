@@ -75,6 +75,16 @@ public class CustomerValidatorShould {
 
         assertThat(expected).isFalse();
     }
+
+    @Test
+    public void take_as_non_valid_a_customer_without_any_data() {
+        Customer customer = new Customer("", "", "");
+        var sut = new CustomerValidator();
+
+        boolean expected = sut.validate(customer);
+
+        assertThat(expected).isFalse();
+    }
 }
 
 // WPN ADD MPN
