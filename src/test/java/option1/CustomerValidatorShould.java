@@ -1,84 +1,50 @@
 package option1;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CustomerValidatorShould {
-    @Test
-    public void take_as_valid_a_customer_with_work_phone_number_and_address_and_mobile_phone_number() {
-        Customer customer = new Customer("123456789", "123456789", "123456789");
+    @ParameterizedTest
+    @CsvSource({
+            "123456789, 123456789, 123456789",
+            "123456789, 123456789, ''",
+    })
+    public void take_as_valid_if_customer_has_work_phone_number_and_address(String workPhoneNumber, String address, String mobilePhoneNumber) {
+        Customer customer = new Customer(workPhoneNumber, address, mobilePhoneNumber);
         var sut = new CustomerValidator();
 
         boolean expected = sut.validate(customer);
 
         assertThat(expected).isTrue();
+
     }
 
-    @Test
-    public void take_as_valid_a_customer_with_work_phone_number_and_address_but_without_mobile_phone_number() {
-        Customer customer = new Customer("123456789", "123456789", "");
+    @ParameterizedTest
+    @CsvSource({
+            "123456789, '', 123456789",
+            "'' , 123456789, 123456789",
+            "'' , '', 123456789",
+    })
+    public void take_as_valid_if_customer_has_mobile_phone_number(String workPhoneNumber, String address, String mobilePhoneNumber) {
+        Customer customer = new Customer(workPhoneNumber, address, mobilePhoneNumber);
         var sut = new CustomerValidator();
 
         boolean expected = sut.validate(customer);
 
         assertThat(expected).isTrue();
+
     }
 
-    @Test
-    public void take_as_valid_a_customer_with_work_phone_number__and_mobile_phone_number_but_without_address() {
-        Customer customer = new Customer("123456789", "", "123456789");
-        var sut = new CustomerValidator();
-
-        boolean expected = sut.validate(customer);
-
-        assertThat(expected).isTrue();
-    }
-
-    @Test
-    public void take_as_valid_a_customer_with_address_and_mobile_phone_number_but_without_work_phone_number() {
-        Customer customer = new Customer("", "123456789", "123456789");
-        var sut = new CustomerValidator();
-
-        boolean expected = sut.validate(customer);
-
-        assertThat(expected).isTrue();
-    }
-
-    @Test
-    public void take_as_valid_a_customer_with_only_mobile_phone_number() {
-        Customer customer = new Customer("", "", "123456789");
-        var sut = new CustomerValidator();
-
-        boolean expected = sut.validate(customer);
-
-        assertThat(expected).isTrue();
-    }
-
-
-    @Test
-    public void take_as_non_valid_a_customer_with_only_work_phone_number() {
-        Customer customer = new Customer("123456789", "", "");
-        var sut = new CustomerValidator();
-
-        boolean expected = sut.validate(customer);
-
-        assertThat(expected).isFalse();
-    }
-
-    @Test
-    public void take_as_non_valid_a_customer_with_only_address() {
-        Customer customer = new Customer("", "123456789", "");
-        var sut = new CustomerValidator();
-
-        boolean expected = sut.validate(customer);
-
-        assertThat(expected).isFalse();
-    }
-
-    @Test
-    public void take_as_non_valid_a_customer_without_any_data() {
-        Customer customer = new Customer("", "", "");
+    @ParameterizedTest
+    @CsvSource({
+            "123456789, '', ''",
+            "'', 123456789, ''",
+            "'', '', ''",
+    })
+    public void take_as_non_valid_if_customer_has_not_work_phone_number_and_address_nor_either_mobile_phone_number(String workPhoneNumber, String address, String mobilePhoneNumber) {
+        Customer customer = new Customer(workPhoneNumber, address, mobilePhoneNumber);
         var sut = new CustomerValidator();
 
         boolean expected = sut.validate(customer);
@@ -87,12 +53,15 @@ public class CustomerValidatorShould {
     }
 }
 
+
 // WPN ADD MPN
 // [x] [x] [x] -> can be registered
 // [x] [x] [ ] -> can be registered
+
 // [x] [ ] [x] -> can be registered
 // [ ] [x] [x] -> can be registered
 // [ ] [ ] [x] -> can be registered
+
 // [x] [ ] [ ] -> cannot be registered
 // [ ] [x] [ ] -> cannot be registered
 // [ ] [ ] [ ] -> cannot be registered
