@@ -34,6 +34,16 @@ public class CustomerValidatorShould {
 
         assertThat(expected).isTrue();
     }
+
+    @Test
+    public void take_valid_a_customer_with_address_and_mobile_phone_number_but_without_work_phone_number() {
+        Customer customer = new Customer("", "123456789", "123456789");
+        var sut = new CustomerValidator();
+
+        boolean expected = sut.validate(customer);
+
+        assertThat(expected).isTrue();
+    }
 }
 
 // WPN ADD MPN
