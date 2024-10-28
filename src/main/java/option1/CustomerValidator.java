@@ -5,6 +5,9 @@ public class CustomerValidator {
         if (customer.getAddress().isEmpty() && customer.getMobilePhoneNumber().isEmpty()) {
             return false;
         }
+        if (customer.getMobilePhoneNumber().isEmpty() && customer.getWorkPhoneNumber().isEmpty()) {
+            return false;
+        }
 
         return true;
     }
